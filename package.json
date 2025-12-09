@@ -1,0 +1,176 @@
+{
+  "name": "rest-reminder",
+  "displayName": "休息提醒",
+  "description": "定时提醒你休息，保护眼睛和身体健康。支持自定义图片、夜间模式、详细统计",
+  "version": "1.0.0",
+  "publisher": "syron-choo",
+  "author": {
+    "name": "Syron Choo",
+    "email": "syronchoo@163.com"
+  },
+  "license": "MIT",
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SyronChoo/rest-reminder"
+  },
+  "keywords": [
+    "休息",
+    "提醒",
+    "健康",
+    "眼睛保护",
+    "番茄工作法",
+    "rest",
+    "reminder",
+    "health"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "rest-reminder.startReminder",
+        "title": "开始休息提醒",
+        "category": "休息提醒"
+      },
+      {
+        "command": "rest-reminder.stopReminder",
+        "title": "停止休息提醒",
+        "category": "休息提醒"
+      },
+      {
+        "command": "rest-reminder.setInterval",
+        "title": "设置提醒间隔",
+        "category": "休息提醒"
+      },
+      {
+        "command": "rest-reminder.setImage",
+        "title": "设置提醒图片",
+        "category": "休息提醒"
+      },
+      {
+        "command": "rest-reminder.previewImage",
+        "title": "预览提醒图片",
+        "category": "休息提醒"
+      },
+      {
+        "command": "rest-reminder.showStatistics",
+        "title": "查看休息统计",
+        "category": "休息提醒"
+      },
+      {
+        "command": "rest-reminder.clearStatistics",
+        "title": "清除休息统计",
+        "category": "休息提醒"
+      }
+    ],
+    "configuration": {
+      "title": "休息提醒",
+      "properties": {
+        "restReminder.interval": {
+          "type": "number",
+          "default": 30,
+          "description": "提醒间隔（分钟）"
+        },
+        "restReminder.autoStart": {
+          "type": "boolean",
+          "default": true,
+          "description": "启动 VSCode 时自动开始提醒"
+        },
+        "restReminder.message": {
+          "type": "string",
+          "default": "该休息一下了！已经工作了 {time} 分钟",
+          "description": "提醒消息内容（{time} 会被替换为实际时间）"
+        },
+        "restReminder.imageUrl": {
+          "type": "string",
+          "default": "https://picsum.photos/600/400?random",
+          "description": "提醒时显示的图片URL（支持http/https）"
+        },
+        "restReminder.showImage": {
+          "type": "boolean",
+          "default": true,
+          "description": "是否在提醒时显示图片"
+        },
+        "restReminder.imageDisplayTime": {
+          "type": "number",
+          "default": 30,
+          "description": "图片显示时长（秒），0 表示不自动关闭"
+        },
+        "restReminder.enableStatistics": {
+          "type": "boolean",
+          "default": true,
+          "description": "是否启用休息统计功能"
+        },
+        "restReminder.reminderStyle": {
+          "type": "string",
+          "default": "compact",
+          "enum": [
+            "compact",
+            "full",
+            "notification"
+          ],
+          "enumDescriptions": [
+            "紧凑模式 - 小窗口，右下角显示",
+            "完整模式 - 大窗口，居中显示",
+            "通知模式 - 仅系统通知"
+          ],
+          "description": "提醒显示样式"
+        },
+        "restReminder.autoCloseTime": {
+          "type": "number",
+          "default": 30,
+          "enum": [
+            5,
+            10,
+            15,
+            20,
+            30,
+            0
+          ],
+          "enumDescriptions": [
+            "5秒后关闭",
+            "10秒后关闭",
+            "15秒后关闭",
+            "20秒后关闭",
+            "30秒后关闭",
+            "不自动关闭"
+          ],
+          "description": "提醒窗口自动关闭时间（秒），0表示不自动关闭"
+        },
+        "restReminder.windowSize": {
+          "type": "string",
+          "default": "medium",
+          "enum": [
+            "small",
+            "medium",
+            "large"
+          ],
+          "enumDescriptions": [
+            "小 - 400x300",
+            "中 - 600x400",
+            "大 - 800x600"
+          ],
+          "description": "提醒窗口图片大小"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.60.0",
+    "@types/node": "14.x",
+    "eslint": "^8.0.0"
+  }
+}

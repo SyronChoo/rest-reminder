@@ -1,0 +1,10 @@
+.vscode/**
+.vscode-test/**
+node_modules/**
+.gitignore
+.git/**
+*.md
+!README.md
+!CHANGELOG.md
+screenshots/**
+.eslintrc.json
